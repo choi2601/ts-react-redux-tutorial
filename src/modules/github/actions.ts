@@ -1,4 +1,4 @@
-import { createStandardAction, createAsyncAction } from "typesafe-actions";
+import { createStandardAction, createAsyncAction, PayloadAction } from "typesafe-actions";
 import { GitHubProfile } from "../../api/github";
 import { AxiosError } from 'axios';
 
@@ -14,6 +14,8 @@ export const getUserProfileAsync = createAsyncAction(
     GET_USER_PROFILE,
     GET_USER_PROFILE_SUCCESS,
     GET_USER_PROFILE_ERROR
-)<undefined, GitHubProfile, AxiosError>();
+)<PayloadAction<any, any>, GitHubProfile, AxiosError>();
+
+//payload가 아무것도 받지 않는 경우애는 undefined가 아닌 PayloadAction<any, any>를 넣어줘야 오류 없이 작동이 됬음
 
 
